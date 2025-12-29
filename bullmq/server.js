@@ -1,7 +1,7 @@
 //run npm run produce
 //npm run worker
 //npm run server
-//sepearting coz of logs issue
+//seperating coz of logs issue
 
 import express from "express";
 import { createBullBoard } from "@bull-board/api";
@@ -11,20 +11,18 @@ import { mathQueue } from "./queue.js";
 
 const app = express();
 
-function setupBullBoard(app) {
-    const serverAdapter = new ExpressAdapter();
+//set up Bull Board
+const serverAdapter = new ExpressAdapter();
 
-    serverAdapter.setBasePath("/admin/queues");
+serverAdapter.setBasePath("/admin/queues");
 
-    createBullBoard({
-        queues: [new BullMQAdapter(mathQueue)],
-        serverAdapter,
-    });
+createBullBoard({
+    queues: [new BullMQAdapter(mathQueue)],
+    serverAdapter,
+});
 
-    app.use("/admin/queues", serverAdapter.getRouter());
-}
+app.use("/admin/queues", serverAdapter.getRouter());
 
-setupBullBoard(app);
 
 app.get("/", (req, res) => {
     res.send("BullMQ Dashboard Running");

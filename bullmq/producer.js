@@ -1,5 +1,3 @@
-
-
 import readline from "node:readline";
 import { mathQueue } from "./queue.js";
 
