@@ -1,6 +1,6 @@
-const express = require("express");
-const axios = require("axios");
-const client = require("./client");
+import express from "express";
+import axios from "axios";
+import client from "./client.js";
 
 const app = express();
 

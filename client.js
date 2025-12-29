@@ -1,5 +1,5 @@
-const { Redis } = require("ioredis");
+import { Redis } from "ioredis";
 
 const client = new Redis();
 
-module.exports = client;
+export default client;
